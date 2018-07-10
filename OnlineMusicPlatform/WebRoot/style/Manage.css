@@ -1,5 +1,17 @@
 @CHARSET "UTF-8";
 
-div.mancenter{
-	vertical-align: middle;
+body{
+  background: #83ccd5 ;
+  font-family: Axure Handwriting;
+}
+
+.centerWrapper{
+  height: 100%;
+  width: 100%;
+  background: #83ccd5 ;
+  vertical-align: middle;
+  background-image: url(./adm.png);
+  background-repeat: no-repeat;
+  background-position-x:center;
+  background-position-y:-6em;
 }

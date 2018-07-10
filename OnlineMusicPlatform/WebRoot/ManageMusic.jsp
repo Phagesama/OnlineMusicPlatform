@@ -22,7 +22,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="style/MainStyle.css">
     <link rel="stylesheet" type="text/css" href="style/Theme.css">
     <link rel="stylesheet" type="text/css" href="style/Manage.css">
-    <link rel="stylesheet" type="text/css" href="./style/Sign.css">
 
   </head>
   

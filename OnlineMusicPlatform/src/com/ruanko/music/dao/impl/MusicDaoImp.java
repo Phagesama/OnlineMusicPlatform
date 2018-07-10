@@ -30,7 +30,6 @@ public class MusicDaoImp implements MusicDao {
 		Connection conn = null;// 澹版槑鏁版嵁搴撹繛鎺�
 		PreparedStatement psmt = null;// 澹版槑棰勫鐞嗚鍙�
 		ResultSet rs, rs1 = null;// 澹版槑缁撴灉闆嗗悎
-
 		// 鏌ヨ鐐瑰嚮閲忓墠鍗佺殑姝屾洸骞朵笖杩斿洖MusicBusiModel鐨勬暟缁�
 		ArrayList<MusicBusiModel> mbml = new ArrayList<MusicBusiModel>();// 澹版槑杩斿洖缁撴灉
 		try {
@@ -56,11 +55,10 @@ public class MusicDaoImp implements MusicDao {
 					// 15.string 16.string
 					+ "from popularity,music,artist,album " + "where popularity.type = 3 "
 					+ "and music.art_id = popularity.obj_id " + "and artist.art_id = music.art_id "
-					+ "and album.art_id = artist.art_id " + "and album.alb_id = music.alb_id "
+					+ "and album.art_id = artist.art_id " + "and album.alb_id = music.alb_id and music.del = 0 "
 					+ "order by popularity.hits_count desc limit 10;";
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery(sql);
-			System.out.println("鎵цsql璇彞");
 			while (rs.next()) {
 				MusicBusiModel mbmd = new MusicBusiModel();
 				// 璁剧疆MusicBusiModel
@@ -87,7 +85,7 @@ public class MusicDaoImp implements MusicDao {
 				mbmd.setArtist(rs.getString(13));
 				mbmd.setArtist_photo(rs.getString(14));
 				mbmd.setAlbum(rs.getString(15));
-				mbmd.setArtist_photo(rs.getString(16));
+				mbmd.setCover(rs.getString(16));
 				mbml.add(mbmd);
 			}
 
@@ -136,7 +134,7 @@ public class MusicDaoImp implements MusicDao {
 					+ "artist.name,artist.image1, " + "album.name,album.image1 " + "from popularity,music,artist,album "
 					+ "where artist.art_id = music.art_id " + "and popularity.type = 3 "
 					+ "and music.art_id = popularity.obj_id " + "and album.art_id = artist.art_id "
-					+ "and album.alb_id = music.alb_id " + "order by music.publishdate desc limit 10;";
+					+ "and album.alb_id = music.alb_id and music.del = 0 " + "order by music.publishdate desc limit 10;";
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery(sql);
 			System.out.println("鎵цsql璇彞");
@@ -167,7 +165,7 @@ public class MusicDaoImp implements MusicDao {
 				mbmd.setArtist(rs.getString(13));
 				mbmd.setArtist_photo(rs.getString(14));
 				mbmd.setAlbum(rs.getString(15));
-				mbmd.setArtist_photo(rs.getString(16));
+				mbmd.setCover(rs.getString(16));
 				mbml.add(mbmd);
 			}
 
@@ -197,7 +195,7 @@ public class MusicDaoImp implements MusicDao {
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		conn = DBUtil.getConnection();
-		String sql1 = "select max(mus_id) from music;";
+		String sql1 = "select max(mus_id) from music where del = 0;";
 		int[] result = new int[10];
 		int count = 0;
 		try {
@@ -277,28 +275,24 @@ public class MusicDaoImp implements MusicDao {
 					+ "album.name,album.image1,"
 					// 15.string 16.string
 					+ "popularity.down_count,popularity.hits_count "
-					// 1.int 2.int
 					+ "from music,artist,album,popularity " + "where music.mus_id = " + Id
 					+ " and artist.art_id = music.art_id " + "and album.art_id = artist.art_id "
 					+ "and album.alb_id = music.alb_id " + "and popularity.type = 3 "
-					+ "and popularity.obj_id = music.mus_id;";
+					+ "and popularity.obj_id = music.mus_id and music.del = 0;";
 			System.out.println(sql);
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery(sql);
-			System.out.println("鎵цsql璇彞");
 			if (rs.next()) {
 				// 璁剧疆MusicBusiModel
 				mbmd.setDown_count(rs.getInt(15));
 				mbmd.setHit_count(rs.getInt(16));
 				mbmd.setId(rs.getInt(1));
 				mbmd.setName(rs.getString(2));
-				System.out.println("姝屾洸鍚�:" + rs.getString(2));
 				mbmd.setRealname(rs.getString(3));
 				mbmd.setLrc(rs.getString(4));
 				mbmd.setZone(rs.getString(5));
 				mbmd.setPublishdate(rs.getString(6));
 				mbmd.setTag1(map.get(rs.getInt(7)).toString());
-				// tag2銆乼ag3鍙负null
 				if (rs.getInt(8) != 0) {
 					mbmd.setTag2(map.get(rs.getInt(8)).toString());
 				} else {
@@ -313,14 +307,12 @@ public class MusicDaoImp implements MusicDao {
 				mbmd.setArtist(rs.getString(11));
 				mbmd.setArtist_photo(rs.getString(12));
 				mbmd.setAlbum(rs.getString(13));
-				mbmd.setArtist_photo(rs.getString(14));
-				// 鍏抽棴缁撴灉闆嗗悎锛岃鍙ュ拰杩炴帴
+				mbmd.setCover(rs.getString(14));
 				DBUtil.closeResultSet(rs);
 				DBUtil.closeResultSet(rs1);
 				DBUtil.closeStatement(psmt);
 				DBUtil.closeConnection(conn);
 			} else {
-				System.out.println("鏌ヨ鏃犵粨鏋�");
 				// 鍏抽棴缁撴灉闆嗗悎锛岃鍙ュ拰杩炴帴
 				DBUtil.closeResultSet(rs);
 				DBUtil.closeResultSet(rs1);
@@ -335,10 +327,6 @@ public class MusicDaoImp implements MusicDao {
 		return mbmd;
 	}
 
-	// 鏃犺姝屾洸鏄惁瀛樺湪鍧囪繑鍥濵usicBusiModel瀵硅薄
-	// 鏍规嵁姝屾洸鍚嶇О鏌ヨ姝屾洸骞惰繑鍥濵usicBusiModel
-	// 鑻ヤ笉瀛樺湪MusicBusiModel瀵硅薄锛屼絾鍏跺唴瀹逛负null
-	// 妯＄硦鎼滅储锛屽瓨鍦ㄧ洰鏍囧瓧娈电殑姝屾洸閮戒細琚悳绱�
 	@Override
 	public ArrayList<MusicBusiModel> getMusicByName(String name) throws AppException {
 		Connection conn = null;// 澹版槑鏁版嵁搴撹繛鎺�
@@ -371,11 +359,9 @@ public class MusicDaoImp implements MusicDao {
 					+ "from music,artist,album,popularity " + "where music.name like " + " '%" + name + "%' "
 					+ "and artist.art_id = music.art_id " + "and album.art_id = artist.art_id "
 					+ "and album.alb_id = music.alb_id " + "and popularity.type = 3 "
-					+ "and popularity.obj_id = music.mus_id;";
-			// System.out.println(sql);
+					+ "and popularity.obj_id = music.mus_id and music.del = 0;";
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery(sql);
-			System.out.println("鎵цsql璇彞");
 			while (rs.next()) {
 				MusicBusiModel mbmd = new MusicBusiModel();// 澹版槑MusicBusiModel瀵硅薄
 				// 璁剧疆MusicBusiModel
@@ -404,7 +390,7 @@ public class MusicDaoImp implements MusicDao {
 				mbmd.setArtist(rs.getString(11));
 				mbmd.setArtist_photo(rs.getString(12));
 				mbmd.setAlbum(rs.getString(13));
-				mbmd.setArtist_photo(rs.getString(14));
+				mbmd.setCover(rs.getString(14));
 				mbml.add(mbmd);
 			}
 			// 鍏抽棴缁撴灉闆嗗悎锛岃鍙ュ拰杩炴帴
@@ -457,11 +443,10 @@ public class MusicDaoImp implements MusicDao {
 					+ "and album.art_id = artist.art_id "
 					+ "and album.alb_id = music.alb_id "
 					+ "and popularity.type = 3 "
-					+ "and popularity.obj_id = music.mus_id;";
+					+ "and popularity.obj_id = music.mus_id and music.del = 0;";
 			//System.out.println(sql);
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery(sql);
-			System.out.println("鎵цsql璇彞");
 			while(rs.next()){
 				MusicBusiModel mbmd = new MusicBusiModel();//澹版槑MusicBusiModel瀵硅薄
 				//璁剧疆MusicBusiModel
@@ -492,7 +477,7 @@ public class MusicDaoImp implements MusicDao {
 				mbmd.setArtist(rs.getString(15));
 				mbmd.setArtist_photo(rs.getString(16));
 				mbmd.setAlbum(rs.getString(13));
-				mbmd.setArtist_photo(rs.getString(14));
+				mbmd.setCover(rs.getString(14));
 				mbml.add(mbmd);
 			}
 			//鍏抽棴缁撴灉闆嗗悎锛岃鍙ュ拰杩炴帴
@@ -545,11 +530,10 @@ public class MusicDaoImp implements MusicDao {
 					+ "and artist.art_id = album.art_id "
 					+ "and music.art_id = artist.art_id "
 					+ "and popularity.type = 3 "
-					+ "and popularity.obj_id = music.mus_id;";
+					+ "and popularity.obj_id = music.mus_id and music.del = 0;";
 			//System.out.println(sql);
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery(sql);
-			System.out.println("鎵цsql璇彞");
 			while(rs.next()){
 				MusicBusiModel mbmd = new MusicBusiModel();//澹版槑MusicBusiModel瀵硅薄
 				//璁剧疆MusicBusiModel
@@ -580,7 +564,7 @@ public class MusicDaoImp implements MusicDao {
 				mbmd.setArtist(rs.getString(3));
 				mbmd.setArtist_photo(rs.getString(4));
 				mbmd.setAlbum(rs.getString(1));
-				mbmd.setArtist_photo(rs.getString(2));
+				mbmd.setCover(rs.getString(2));
 				mbml.add(mbmd);
 			}
 			//鍏抽棴缁撴灉闆嗗悎锛岃鍙ュ拰杩炴帴
@@ -605,7 +589,7 @@ public class MusicDaoImp implements MusicDao {
 		
 		try {
 			conn = DBUtil.getConnection();//鑾峰緱鏁版嵁搴撹繛鎺�
-			String sql = "select * from artist where art_id = '" + Id +"'";
+			String sql = "select * from artist where art_id = " + Id +" and del = 0;";
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 			if(rs.next()){
@@ -642,7 +626,7 @@ public class MusicDaoImp implements MusicDao {
 		
 		try {
 			conn = DBUtil.getConnection();//鑾峰緱鏁版嵁搴撹繛鎺�
-			String sql = "select * from artist where name like '%" + name +"%'";
+			String sql = "select * from artist where name like '%" + name +"%'and del = 0;";
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 			while(rs.next()){
@@ -677,7 +661,7 @@ public class MusicDaoImp implements MusicDao {
 		
 		try {
 			conn = DBUtil.getConnection();//杩炴帴鏁版嵁搴�
-			String sql = "select * from album where alb_id = '" + Id + "'";
+			String sql = "select * from album where alb_id = '" + Id + "'and del = 0;";
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 			if(rs.next()){
@@ -712,7 +696,7 @@ public class MusicDaoImp implements MusicDao {
 		
 		try {
 			conn = DBUtil.getConnection();//杩炴帴鏁版嵁搴�
-			String sql = "select * from album where name like '%" + name + "%'";
+			String sql = "select * from album where name like '%" + name + "%'and del = 0";
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 			while(rs.next()){
@@ -750,7 +734,7 @@ public class MusicDaoImp implements MusicDao {
 		
 		try {
 			conn = DBUtil.getConnection();//杩炴帴鏁版嵁搴�
-			String sql = "select * from tag where tag_id = '" + Id + "'";
+			String sql = "select * from tag where tag_id = '" + Id + "';";
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 			if(rs.next()){
@@ -781,7 +765,7 @@ public class MusicDaoImp implements MusicDao {
 		
 		try {
 			conn = DBUtil.getConnection();//杩炴帴鏁版嵁搴�
-			String sql = "select * from tag where tagname = '" + name + "'";
+			String sql = "select * from tag where tagname = '" + name + "';";
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 			if(rs.next()){
@@ -812,7 +796,6 @@ public class MusicDaoImp implements MusicDao {
 			// System.out.println("UserDaoImp.save()鑾峰彇鏁版嵁搴撹繛鎺ユ垚鍔�");
 			String sql = "insert into music(tag1,tag2,tag3,alb_id,art_id,name,realname,publishdate,lrc,zone,del,mus_url) values (?,?,?,?,?,?,?,?,?,?,0,?);";
 			psmt = conn.prepareStatement(sql);
-			System.out.println("sql璇彞棰勫鐞嗘垚鍔�");
 			psmt.setLong(1, music.getTag1());
 			System.out.println(music.getTag1());
 			if(music.getTag2()!=0){
@@ -976,7 +959,6 @@ public class MusicDaoImp implements MusicDao {
 
 			// 7.鎵ц鏂板鎿嶄綔
 			int result = psmt.executeUpdate();
-			System.out.println("鏈鎿嶄綔褰卞搷" + result + "琛�");
 			sql = "select max(alb_id) from album;";
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
@@ -1024,7 +1006,6 @@ public class MusicDaoImp implements MusicDao {
 			psmt.setLong(4, pop.getType());
 			// 7.鎵ц鏂板鎿嶄綔
 			int result = psmt.executeUpdate();
-			System.out.println("鏈鎿嶄綔褰卞搷" + result + "琛�");
 			sql = "select max(pop_id) from popularity;";
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
@@ -1153,7 +1134,6 @@ public class MusicDaoImp implements MusicDao {
 			psmt.setLong(12, music.getMusId());
 			// 7.鎵ц鏂板鎿嶄綔
 			int result = psmt.executeUpdate();
-			System.out.println("鏈鎿嶄綔褰卞搷" + result + "琛�");
 			// 8.鑾峰彇鎿嶄綔缁撴灉锛岃缃甪lag
 		} catch (SQLException e) {
 			// 9.寮傚父澶勭悊
@@ -1189,7 +1169,6 @@ public class MusicDaoImp implements MusicDao {
 			// System.out.println("UserDaoImp.save()鑾峰彇鏁版嵁搴撹繛鎺ユ垚鍔�");
 			String sql = "update artist set name = ?,image1 = ?,image2 = ?,description = ?,category = ?,gender = ?where art_id = ?;";
 			psmt = conn.prepareStatement(sql);
-			System.out.println("sql璇彞棰勫鐞嗘垚鍔�");
 			// 6.涓哄弬鏁拌缃��
 			psmt.setString(1, artist.getName());
 			psmt.setString(2, artist.getImage1());
@@ -1201,7 +1180,6 @@ public class MusicDaoImp implements MusicDao {
 
 			// 7.鎵ц鏂板鎿嶄綔
 			int result = psmt.executeUpdate();
-			System.out.println("鏈鎿嶄綔褰卞搷" + result + "琛�");
 			// 8.鑾峰彇鎿嶄綔缁撴灉锛岃缃甪lag
 		} catch (SQLException e) {
 			// 9.寮傚父澶勭悊
@@ -1233,7 +1211,6 @@ public class MusicDaoImp implements MusicDao {
 			// System.out.println("UserDaoImp.save()鑾峰彇鏁版嵁搴撹繛鎺ユ垚鍔�");
 			String sql = "update album set art_id = ?,name = ?,publishdate = ?,image1 = ?,image2 = ?,company = ?,description = ?where alb_id = ?;";
 			psmt = conn.prepareStatement(sql);
-			System.out.println("sql璇彞棰勫鐞嗘垚鍔�");
 			// 6.涓哄弬鏁拌缃��
 			psmt.setLong(1, album.getArt_id());
 			psmt.setString(2, album.getName());
@@ -1246,7 +1223,6 @@ public class MusicDaoImp implements MusicDao {
 
 			// 7.鎵ц鏂板鎿嶄綔
 			int result = psmt.executeUpdate();
-			System.out.println("鏈鎿嶄綔褰卞搷" + result + "琛�");
 			// 8.鑾峰彇鎿嶄綔缁撴灉锛岃缃甪lag
 		} catch (SQLException e) {
 			// 9.寮傚父澶勭悊
@@ -1307,11 +1283,10 @@ public class MusicDaoImp implements MusicDao {
 					+ "and album.art_id = artist.art_id "
 					+ "and album.alb_id = music.alb_id "
 					+ "and popularity.type = 3 "
-					+ "and popularity.obj_id = music.mus_id;";
+					+ "and popularity.obj_id = music.mus_id and music.del = 0;";
 			//System.out.println(sql);
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery(sql);
-			System.out.println("鎵цsql璇彞");
 			while(rs.next()){
 				//璁剧疆MusicBusiModel
 				mbmd.setDown_count(rs.getInt(15));
@@ -1341,7 +1316,7 @@ public class MusicDaoImp implements MusicDao {
 				mbmd.setArtist(rs.getString(11));
 				mbmd.setArtist_photo(rs.getString(12));
 				mbmd.setAlbum(rs.getString(13));
-				mbmd.setArtist_photo(rs.getString(14));
+				mbmd.setCover(rs.getString(14));
 			}
 			//鍏抽棴缁撴灉闆嗗悎锛岃鍙ュ拰杩炴帴
 			DBUtil.closeResultSet(rs);

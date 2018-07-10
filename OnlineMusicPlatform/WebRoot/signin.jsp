@@ -40,8 +40,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   </div>
                   <div class="checkbox">
                     <label>
-                      <input type="radio" name="box" id=box1 value=admin/>Admin
-                       <input type="radio" name="box"id=box2 value=user/>User
+                      <input type="radio" name="box" id=box1 value="admin"/>Admin
+                       <input type="radio" name="box"id=box2 value="user"/>User
                     </label>
                   </div>
                   <button type="submit" class="btn btn-primary" id="btn-login">Sign In</button>

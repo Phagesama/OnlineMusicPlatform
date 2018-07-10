@@ -6,7 +6,7 @@ body{
 }
 
 .backgroundpicture{
-	background-image:url(../music/three.jpg);
+	background-image:url(../style/cloud.jpg);
 	height:100%;
 	width:100%;
 	background-size:100% 100%;
@@ -36,11 +36,15 @@ to {-webkit-transform: rotate(360deg);}
 	background:#f9b4b8;
 	box-shadow:0px 3px #82ccd5;
 }
-
+.topWrapper{
+	width:980px;
+	margin-left:auto;
+	margin-right:auto;
+}
 a.titleBar{
 	float: left;
 	display: block;
-	color:#000;
+	color:#fff;
 	text-align: center;
 	padding: 1.5em 1.8em;
 	text-decoration: none;
@@ -52,7 +56,7 @@ a.signright, a.signleft{
 	float: right;
 	display: block;
 	text-align: center;
-	color:#000;
+	color:#fff;
 	padding-top: 1.5em;
 	padding-bottom: 1.5em;
 	text-decoration: none;
@@ -72,7 +76,7 @@ a.signleft{
 a.signor{
 	float: right;
 	display: block;
-	color: #fff;
+	color: #804040;
 	text-align: center;
 	padding-top: 1.5em;
 	padding-bottom: 1.5em;
@@ -121,11 +125,11 @@ a.signor{
 /*播放显示*/
 .wrapper{
 	position:fixed;
-	top:8em;
+	top:15em;
 	height:30em;
-	width: 70%;
-    left: 15%;
-    right: 15%;
+	width: 980px;
+    left: 23%;
+    right: 30%;
     display: flex;
     justify-content: space-between;
 }
@@ -133,18 +137,17 @@ a.signor{
 	height:auto;
 }
 .albumCover{
-	width:17em;
+	width:25em;
 	border-radius:100%;
 	
 }
 
 .btn-audio{
 	position: relative;
-    top: 70px;
-    margin-left: 4em;
-    margin-top: 1em;
-    width: 266px;
-    height: 90px;
+    width: 100px;
+    height: 100px;
+    top:-15.5em;
+    left:9.5em;
     background:url(./voice_stop.png) no-repeat center bottom;
     background-size:cover;
 }

@@ -17,7 +17,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
 	<link rel="stylesheet" type="text/css" href="PlayPage/PlayPage.css">
-    <link rel="stylesheet" type="text/css" href="../style/Theme.css">
 	
   </head>
   
@@ -25,7 +24,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <div class = "playPage">
    	<div  class = "backgroundpicture"></div>
      <div class = "topBar">
-        <a href="/OnlineMusicPlatform/main.jsp" class="titleBar">RuanKoMusic</a>
+     <div class = "topWrapper">
+     	<a href="/OnlineMusicPlatform/main.jsp" class="titleBar">RuanKoMusic</a>
         <a href="" class="signright">Sign up</a>
         <a class="signor">or</a>
         <a href="" class="signleft">Sign in</a>
@@ -33,6 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           	<input type="submit" name="SearchSubmit" class="searchSub" value=" ">
           	<input type="text" name="Search" class="searchBox" placeholder="Search" autocomplete="on">
         </form>
+     </div>
      </div>
      <div class = "wrapper">
      	<div class = "control">
@@ -198,7 +199,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         	prevLine = document.getElementById('line-' + (i > 0 ? i - 1 : i));
                     	prevLine.className = '';
                     	//randomize the color of the current line of the lyric
-                    	line.className = 'current-line-' + 1;
+                    	line.className = 'current-line-' + 3;
                     	that.lyricContainer.style.top = 37 - line.offsetTop + 'px';
                 	};
             	};

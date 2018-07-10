@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     This is my JSP page. <br>
     <script>
-      window.location.replace("http://localhost:8080/OnlineMusicPlatform/GetRankList");
+      window.location.replace("http://localhost:8080/OnlineMusicPlatform/signin.jsp");
     </script>
   </body>
 </html>

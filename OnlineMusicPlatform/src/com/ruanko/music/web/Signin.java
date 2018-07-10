@@ -31,7 +31,7 @@ public class Signin extends ActionSupport {
 			adm.setUsername(as.login(adm));
 			if(!adm.getUsername().equals("")){
 				message = "admin signed in successfully";
-				return "Adm";
+				return INPUT;
 			}
 			message = "admin failed to signin";
 			return "Signin";

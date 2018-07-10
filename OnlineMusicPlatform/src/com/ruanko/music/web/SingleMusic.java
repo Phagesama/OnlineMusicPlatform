@@ -18,6 +18,9 @@ public class SingleMusic extends ActionSupport {
 		
 		music = ms.getMusicByContent(str, 0).get(0);
 		
+		ms.addHits(Integer.toString(music.getId()));
+		ms.addDown(Integer.toString(music.getId()));
+		
 		return SUCCESS;
 	}
 

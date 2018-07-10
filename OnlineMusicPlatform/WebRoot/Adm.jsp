@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'Adm.jsp' starting page</title>
+    <title>Adm</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -23,6 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 	<link rel="stylesheet" type="text/css" href="style/Theme.css">
 	<link rel="stylesheet" type="text/css" href="style/MainStyle.css">
+	<link rel="stylesheet" type="text/css" href="style/Manage.css">
 
   </head>
   
@@ -37,33 +38,68 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </div>
     </div>
     
-    <div class="bodycenter">
-      <div>
-        <button>Upload Music</button>
-        <button>Manage Music</button>
-        <button>Delete Music</button>
+    <div class="centerWrapper">
+      <div class = "name">
+        Please enter the song information
       </div>
       <div>
         <form method="post" enctype="multipart/form-data" action="/OnlineMusicPlatfrom/FileUpload">
-          <input type="file" name="FileName">
-          <input type="text" name="name" placeholder="Name" autocomplete="on">
-          <input type="text" name="realname" placeholder="Realname" autocomplete="on">
-          <input type="text" name="artist" placeholder="Artist" autocomplete="on">
-          <input type="text" name="album" placeholder="Album" autocomplete="on">
-          <input type="file" name="Lrc">
-          <input type="text" name="zone" placeholder="Zone" autocomplete="on">
-          <input type="text" name="publishdate" placeholder="Publish-Date" autocomplete="on">
-          <input type="file" name="Cover">
-          <input type="file" name="Artist_Photo">
-          <input type="submit">
+          <div class = "fill">
+            <label>Select the song file</label>
+            <input type="file" name="FileName">
+          </div>
+          <div class = "fill">
+            <label>Song name</label>
+            <input type="text" name="name" placeholder="Name" autocomplete="on">
+          </div>
+          <div class = "fill">
+            <label>Real name</label>
+            <input type="text" name="realname" placeholder="Realname" autocomplete="on">
+          </div>
+          <div class = "fill">
+            <label>Artist</label>
+            <input type="text" name="artist" placeholder="Artist" autocomplete="on">
+          </div>
+          <div class = "fill">
+             <label>Album name</label>
+             <input type="text" name="album" placeholder="Album" autocomplete="on">
+          </div>
+          <div class = "fill">
+            <label>Select the Lrc file</label>
+            <input type="file" name="Lrc">
+          </div>
+          <div class = "fill">
+            <label>zone</label>
+            <input type="text" name="zone" placeholder="Zone" autocomplete="on">
+          </div>
+          <div class = "fill">
+            <label>Publish date</label>
+            <input type="text" name="publishdate" placeholder="Publish-Date xxxx/xx/xx" autocomplete="on">
+          </div>
+          <div class = "fill">
+            <label>Select the Cover file</label>
+            <input type="file" name="Cover">
+          </div>
+          <div class = "fill">
+            <label>Select the Artist_Photo file</label>
+            <input type="file" name="Artist_Photo">
+          </div>
+          <div>
+            <label>Please select the label</label>
+            <select>
+              <option value="none"></option>
+              <option value="none"></option>
+              <option value="none"></option>
+              <option value="none"></option>
+              <option value="none"></option>
+              <option value="none"></option>
+            </select>
+          </div> 
+           
+          <input type="submit" class = "submit">
         </form>
       </div>
-      <div>
-        <form method="post" action="/OnlineMusicPlatform/AdmSearch">
-          <input type="text" name="search">
-          <input type="submit">
-        </form>
-      </div>
+     
     </div>
   </body>
 </html>
