@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'ManageMusic.jsp' starting page</title>
+    <title>ManageMusic</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -35,17 +35,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </form>
       </div>
     </div>
-     <div class="bodycenter">
+     <div class="centerWrapper">
+        <div class = "name">
+        Please modify the song information
+        </div>
+        <div class = "fillWrapper">
         <form method="post" enctype="multipart/form-data" action="/OnlineMusicPlatform/ManageMusic">
           <input type="text" name="id" style="display: none" value="${mbmd.id}">
-          <input type="text" name="name" value="${mbmd.name}"><br>
-          <input type="text" name="realname" value="${mbmd.realname}"><br>
-          <input type="text" name="artist" value="${mbmd.artist}"><br>
-          <input type="text" name="album" value="${mbmd.album}"><br>
-          <input type="text" name="zone" value="${mbmd.zone}"><br>
-          <input type="text" name="publishdate" value="${mbmd.publishdate}"><br>
-          <input type="submit">
+          <div class = "fill">
+            <label>Song name</label>
+            <input type="text" name="name" value="${mbmd.name}">
+          </div>
+          <div class = "fill">
+            <label>Real name</label>
+            <input type="text" name="realname" value="${mbmd.realname}">
+          </div>
+          <div class = "fill">
+            <label>Artist</label>
+            <input type="text" name="artist" value="${mbmd.artist}">
+          </div>
+          <div class = "fill">
+             <label>Album name</label>
+             <input type="text" name="album" value="${mbmd.album}">
+          </div>
+          <div class = "fill">
+            <label>zone</label>
+            <input type="text" name="zone" value="${mbmd.zone}">
+          </div>
+          <div class = "fill">
+            <label>Publish date</label>
+            <input type="text" name="publishdate" value="${mbmd.publishdate}">
+          </div>
+          <input type="submit" class = "submit-one" value = "SUBMIT">
         </form>
+        </div>
       </div>
   </body>
 </html>

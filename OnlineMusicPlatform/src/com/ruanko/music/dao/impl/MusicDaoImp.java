@@ -1335,7 +1335,7 @@ public class MusicDaoImp implements MusicDao {
 		PreparedStatement psmt = null;// 预处理语句声明
 		try {
 			conn = DBUtil.getConnection();
-			String sql = "update popularity set hits_count = hits_count +1 where (obj_id = "+ id +"and type = 3) or (obj_id = (select alb_id from music where mus_id = "+ id +")and type = 1) or (obj_id = (select art_id from music where mus_id = "+ id +")and type = 2)";
+			String sql = "update popularity set hits_count = hits_count +1 where (obj_id = "+ id +" and type = 3) or (obj_id = (select alb_id from music where mus_id = "+ id +") and type = 1) or (obj_id = (select art_id from music where mus_id = "+ id +") and type = 2)";
 			psmt = conn.prepareStatement(sql);
 			System.out.println("sql语句预处理成功");
 			int result = psmt.executeUpdate();
@@ -1368,7 +1368,7 @@ public class MusicDaoImp implements MusicDao {
 		PreparedStatement psmt = null;// 预处理语句声明
 		try {
 			conn = DBUtil.getConnection();
-			String sql = "update popularity set down_count = down_count +1 where (obj_id = "+ id +"and type = 3) or (obj_id = (select alb_id from music where mus_id = "+ id +")and type = 1) or (obj_id = (select art_id from music where mus_id = "+ id +")and type = 2)";
+			String sql = "update popularity set down_count = down_count +1 where (obj_id = "+ id +" and type = 3) or (obj_id = (select alb_id from music where mus_id = "+ id +") and type = 1) or (obj_id = (select art_id from music where mus_id = "+ id +") and type = 2)";
 			psmt = conn.prepareStatement(sql);
 			System.out.println("sql语句预处理成功");
 			int result = psmt.executeUpdate();

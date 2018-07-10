@@ -2,7 +2,7 @@
 body{
 	background: #fdfdfd;
 	font-size:100%;
-	font-family: Axure Handwriting;
+	font-family: Arial Rounded MT Bold;
 }
 
 .backgroundpicture{
@@ -23,7 +23,7 @@ to {-webkit-transform: rotate(360deg);}
 }
 
 .playPage{
-	font-family: Axure Handwriting;
+	font-family: Arial Rounded MT Bold;
 }
 
 /*顶部栏*/
@@ -91,7 +91,7 @@ a.signor{
 	float: right;
 	height: 2.0em;
 	width: 15em;
-	font-family: Axure Handwriting;
+	font-family: Arial Rounded MT Bold;
 	margin-top: 1.5em;
 	margin-right: 0em;
 	padding: 0.25em;

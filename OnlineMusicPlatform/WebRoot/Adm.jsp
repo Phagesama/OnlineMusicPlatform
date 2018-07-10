@@ -42,7 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <div class = "name">
         Please enter the song information
       </div>
-      <div>
+      <div class = "fillWrapper">
         <form method="post" enctype="multipart/form-data" action="/OnlineMusicPlatfrom/FileUpload">
           <div class = "fill">
             <label>Select the song file</label>
@@ -50,23 +50,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </div>
           <div class = "fill">
             <label>Song name</label>
-            <input type="text" name="name" placeholder="Name" autocomplete="on">
+            <input type="text" name="name" placeholder="Wonderland(intro)" autocomplete="on">
           </div>
           <div class = "fill">
             <label>Real name</label>
-            <input type="text" name="realname" placeholder="Realname" autocomplete="on">
+            <input type="text" name="realname" placeholder="Wonderland" autocomplete="on">
           </div>
           <div class = "fill">
             <label>Artist</label>
-            <input type="text" name="artist" placeholder="Artist" autocomplete="on">
+            <input type="text" name="artist" placeholder="Jasmine Thompson" autocomplete="on">
           </div>
           <div class = "fill">
              <label>Album name</label>
-             <input type="text" name="album" placeholder="Album" autocomplete="on">
+             <input type="text" name="album" placeholder="Wonderland EP" autocomplete="on">
           </div>
           <div class = "fill">
             <label>Select the Lrc file</label>
-            <input type="file" name="Lrc">
+            <input type="file" name=".Lrc">
           </div>
           <div class = "fill">
             <label>zone</label>
@@ -74,7 +74,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </div>
           <div class = "fill">
             <label>Publish date</label>
-            <input type="text" name="publishdate" placeholder="Publish-Date xxxx/xx/xx" autocomplete="on">
+            <input type="text" name="publishdate" placeholder="2017/05/20" autocomplete="on">
           </div>
           <div class = "fill">
             <label>Select the Cover file</label>
@@ -84,19 +84,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <label>Select the Artist_Photo file</label>
             <input type="file" name="Artist_Photo">
           </div>
-          <div>
+          <div class = "fill">
             <label>Please select the label</label>
             <select>
               <option value="none"></option>
-              <option value="none"></option>
-              <option value="none"></option>
-              <option value="none"></option>
-              <option value="none"></option>
-              <option value="none"></option>
+              <option value="none">摇滚</option>
+              <option value="none">电子</option>
+              <option value="none">说唱</option>
+              <option value="none">嘻哈</option>
+              <option value="none">流行</option>
+              <option value="none">乡村</option>
             </select>
           </div> 
            
-          <input type="submit" class = "submit">
+          <input type="submit" class = "submit" value = "SUBMIT">
         </form>
       </div>
      

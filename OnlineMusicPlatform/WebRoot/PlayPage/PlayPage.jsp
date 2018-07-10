@@ -28,8 +28,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      	<a href="/OnlineMusicPlatform/main.jsp" class="titleBar">RuanKoMusic</a>
         <a href="" class="signright">Sign up</a>
         <a class="signor">or</a>
-        <a href="" class="signleft">Sign in</a>
-        <form action="" method="post">
+        <a href="" class="signleft">${username}</a>
+        <form action="/OnlineMusicPlatform/Search" method="post">
           	<input type="submit" name="SearchSubmit" class="searchSub" value=" ">
           	<input type="text" name="Search" class="searchBox" placeholder="Search" autocomplete="on">
         </form>

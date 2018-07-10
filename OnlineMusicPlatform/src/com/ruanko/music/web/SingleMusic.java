@@ -9,6 +9,7 @@ import com.ruanko.music.service.MusicService;
 public class SingleMusic extends ActionSupport {
 	
 	private MusicBusiModel music;
+	private String username;
 
 	public String execute() throws Exception {
 		
@@ -21,7 +22,17 @@ public class SingleMusic extends ActionSupport {
 		ms.addHits(Integer.toString(music.getId()));
 		ms.addDown(Integer.toString(music.getId()));
 		
+		username = Signin.usersnickname;
+		
 		return SUCCESS;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public MusicBusiModel getMusic() {

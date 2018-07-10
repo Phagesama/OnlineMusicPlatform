@@ -3,6 +3,8 @@ package com.ruanko.music.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.ruanko.music.model.MusicBusiModel;
 import com.ruanko.music.service.MusicService;
@@ -10,12 +12,13 @@ import com.ruanko.music.service.MusicService;
 public class GetRankList extends ActionSupport {
 	
 	private List<List<MusicBusiModel>> RankList;
+	private String username;
 	
 	public String execute() throws Exception {
 		
 		RankList = new ArrayList();
 		MusicService ms =  new MusicService();
-		
+		username = Signin.usersnickname;
 		List<MusicBusiModel> HotestList = ms.getMostPopMusic();
 		List<MusicBusiModel> NewestList = ms.getNewestMusic();
 		List<MusicBusiModel> RecomList = ms.getRandomMusic();
@@ -29,6 +32,14 @@ public class GetRankList extends ActionSupport {
 		}
 
 		return SUCCESS;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public List<List<MusicBusiModel>> getRankList() {

@@ -13,6 +13,7 @@ public class Search extends ActionSupport {
 	
 	private List<MusicBusiModel> SearchList;
 	private int resultlength;
+	private String username;
 	
 	public String execute() throws Exception {
 		
@@ -22,9 +23,19 @@ public class Search extends ActionSupport {
 		
 		SearchList = ms.getMusicByContent(str, 3);
 		
+		username = Signin.usersnickname;
+		
 		resultlength = 100;
 		return SUCCESS;
 		
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public List<MusicBusiModel> getSearchList() {

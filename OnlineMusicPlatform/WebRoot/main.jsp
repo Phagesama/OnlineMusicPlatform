@@ -28,6 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <script>
     var musicList = new Array();
+   
     function addMusic(musicname,musicAddress){
     	musicList.push([musicname,musicAddress]);
     	document.getElementById("mlLength").innerHTML = musicList.length;
@@ -77,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <a href="${pageContext.servletContext.contextPath}/" class="titleBar">RuanKoMusic</a>
         <a href="${pageContext.servletContext.contextPath}/signup.jsp" class="signright">Sign up</a>
         <a class="signor">or</a>
-        <a href="${pageContext.servletContext.contextPath}/signin.jsp" class="signleft">Sign in</a>
+        <a href="${pageContext.servletContext.contextPath}/signin.jsp" class="signleft">${username}</a>
         <form action="/OnlineMusicPlatform/Search" method="post">
           <input type="submit" name="SearchSubmit" class="searchSub" value="">
           <input type="text" name="SearchText" class="searchBox" placeholder="Search" autocomplete="on">
@@ -93,10 +94,65 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </div>
     </div>
     <div class="bodycenter">
-      <img src="${pageContext.servletContext.contextPath}/images/titleImg1.jpg" class="titleImg"/>
+      <div id="imgchangediv" align="center">
+            <img src="${pageContext.servletContext.contextPath}/style/banner-1.png" style="display: block;" id = "imageBanner0"/>
+            <img src="${pageContext.servletContext.contextPath}/style/banner-2.png" style="display: none;" id = "imageBanner1"/>
+            <img src="${pageContext.servletContext.contextPath}/style/banner-3.png" style="display: none;" id = "imageBanner2"/>
+            <img src="${pageContext.servletContext.contextPath}/style/banner-4.png" style="display: none;" id = "imageBanner3"/>
+            <img src="${pageContext.servletContext.contextPath}/style/banner-5.png" style="display: none;" id = "imageBanner4"/>
+            <div id="imgyuan">
+                <font id = "font0"></font>
+                <font id = "font1"></font>
+                <font id = "font2"></font>
+                <font id = "font3"></font>
+                <font id = "font4"></font>
+            </div>
+        </div>
+        <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.10.0/jquery.min.js"></script>
+        <script>
+             var index=0;//每张图片的下标，
+
+	window.onload=function(){       
+    	var start=setInterval(autoPlay,1000);//开始轮播，每秒换一张图
+
+    	$('imgchangediv').onmouseover=function(){//当鼠标光标停在图片上，则停止轮播
+        	clearInterval(start);
+    	}
+    	$('imgchangediv').onmouseout=function(){//当鼠标光标停在图片上，则开始轮播
+        	start=setInterval(autoPlay,2000);
+    	}
+
+    	
+    	//当移动到圆圈，则停滞对应的图片
+    	var funny = function(i){
+        	document.getElementById('font' + i.toString()).onmouseover = function(){
+            	changeImg(i)
+        	}
+    	}
+    	for(var i=0;i<5;i++){
+        	funny(i);
+    	}
+	}
+	//一轮过后，还是第二轮
+	function autoPlay(){
+    	if(index>4){
+        	index=0;
+    	}
+    	changeImg(index++);
+	}
+	//对应圆圈和图片同步
+	function changeImg(index){
+    	for(i=0;i<5;i++){
+    		document.getElementById('imageBanner'+ i.toString()).style.display = 'none';
+    		document.getElementById('font' + i.toString()).style.backgroundColor = 'white';
+    	}
+    	document.getElementById('imageBanner'+ index.toString()).style.display = 'block';
+    		document.getElementById('font' + index.toString()).style.backgroundColor = 'grey';
+	}
+        </script>
       <a href="" class="Lable">RANK</a>
       <p class="line">line1</p>
-      <div>
+      <div class = "rankback">
       	<table id="rankTable">
       	  <tr>
       	    <th>HOTEST</th>
@@ -104,9 +160,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       	    <th>RECOMMEND</th>
       	  </tr>
       	  <tr>
-      	    <td class="firstImgs"><img src="${pageContext.servletContext.contextPath}/images/hotest.png" class="firstImg"/></td>
-      	    <td class="firstImgs"><img src="${pageContext.servletContext.contextPath}/images/newest.png" class="firstImg"/></td>
-      	    <td class="firstImgs"><img src="${pageContext.servletContext.contextPath}/images/hotest.png" class="firstImg"/></td>
+      	    <td class="firstImgs"><img src="${pageContext.servletContext.contextPath}/${RankList[0][0].cover}" class="firstImg"/></td>
+      	    <td class="firstImgs"><img src="${pageContext.servletContext.contextPath}/${RankList[0][1].cover}" class="firstImg"/></td>
+      	    <td class="firstImgs"><img src="${pageContext.servletContext.contextPath}/${RankList[0][2].cover}" class="firstImg"/></td>
       	  </tr>
       	  <c:forEach var="rank" items="${RankList}">
       	  <tr>

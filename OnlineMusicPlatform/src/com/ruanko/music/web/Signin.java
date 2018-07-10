@@ -14,12 +14,12 @@ public class Signin extends ActionSupport {
 
 	private User user;
 	private String message;//登录信息
+	public static String usersnickname;
 	
 	public String execute() throws Exception {
 
 		String account = ServletActionContext.getRequest().getParameter("username");
 		String password = ServletActionContext.getRequest().getParameter("password");
-
 		
 		String value = ServletActionContext.getRequest().getParameter("box");
 		//����box��ֵ�ж��ǹ���Ա��¼�����û���¼
@@ -44,6 +44,7 @@ public class Signin extends ActionSupport {
 			user.setNickname(us.login(user));
 			if(!user.getNickname().equals("")){
 				message = "登录成功";
+				usersnickname = user.getNickname();
 				return SUCCESS;
 			}
 			else{

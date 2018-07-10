@@ -3,7 +3,7 @@
 body{
 	background: #fdfdfd;
 	font-size:100%;
-	font-family: Axure Handwriting;
+	font-family: Arial Rounded MT Bold;
 }
 p.line{
 	float: left;
@@ -44,7 +44,7 @@ p.text{
 	padding-left: 0.5em;
 	text-decoration: none;
 	font-size: 1em;
-	font-family: Axure Handwriting;
+	font-family: Arial Rounded MT Bold;
 	font-weight: 700;
 }
 
@@ -61,7 +61,7 @@ button.muslis{
 }
 
 .bodycenter{
-	font-family: Axure Handwriting;
+	font-family: Arial Rounded MT Bold;
 	width: 980px;
 	margin-left: auto;
 	margin-right: auto;
@@ -79,6 +79,32 @@ button.muslis{
 	height: 500px;
 	margin: 16px 16px 0px 16px;
 }
+image{
+	width:940px;
+	heght:430px;
+}
+#imgyuan{
+    width: 115px;
+    height: 20px;
+    border-radius: 12px;
+    background-color: red;
+    padding-left: 13px;
+    margin: 0 auto;
+    position: relative;
+    top: -30px;
+    background-color: rgba(1, 150, 0, 0.3);
+}
+#imgyuan font{
+    border:1px solid white;
+    width:11px; 
+    height:11px;
+    border-radius:50%;
+    margin-right: 9px;
+    margin-top: 4px;
+    display: block;
+    float: left;
+    background-color: white;
+}
 .firstImgs{
 	width:290px;
 }
@@ -93,13 +119,12 @@ a.Lable{
 	display: block;
 	color: #000000;
 	text-align: center;
-	padding-top: 1.5em;
 	padding-bottom: 0.1em;
 	padding-right: 0.25em;
 	padding-left: 1.4em;
 	text-decoration: none;
 	font-size: 1.5em;
-	font-family: Axure Handwriting;
+	font-family: Arial Rounded MT Bold;
 	font-weight: 700;
 }
 
@@ -108,6 +133,11 @@ table{
 	width: 948px;
 	margin: 5px 16px 0px 16px;
 	border-collapse: collapse;
+}
+
+body{
+	background-image: url(./bacg1.png);
+	background-size: 30%;
 }
 
 th{
@@ -119,19 +149,19 @@ th{
 	padding-left: 1em;
 	padding-right: 1em;
 	font-size: 1em;
-	font-family: Axure Handwriting;
+	font-family: Arial Rounded MT Bold;
 	font-weight: 700;
 }
 
 td{
-	font-size:16px;
+	font-size:14px;
 	display: inline-table;
 	text-align: left;
 	text-decoration: none;
-	padding-top: 0.8em;
-	padding-bottom: 0.8em;
-	padding-left: 0.5em;
-	padding-right: 0.5em;
+	padding-top: 0.6em;
+	padding-bottom: 0.6em;
+	padding-left: 0.7em;
+	padding-right: 0.7em;
 }
 
 .musicbutton{

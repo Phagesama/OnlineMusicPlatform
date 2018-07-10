@@ -40,7 +40,7 @@ div.playerBar{
 	width: 15em;
 	margin-top: 1.5em;
 	margin-right: 0em;
-	font-family: Axure Handwriting;
+	font-family: Arial Rounded MT Bold;
 	padding: 0.25em;
 	color: #808080;
 	border: 0.05em solid;
@@ -86,7 +86,7 @@ div.playerBar{
 }
 
 a.titleBar{
-	font-family: Axure Handwriting;
+	font-family: Arial Rounded MT Bold;
 	float: left;
 	display: block;
 	color: white;
@@ -186,7 +186,7 @@ p.ml{
 	margin: 0px;
 	text-decoration: none;
 	font-size: 1em;
-	font-family: Axure Handwriting;
+	font-family: Arial Rounded MT Bold;
 	font-weight: 700;
 }
 

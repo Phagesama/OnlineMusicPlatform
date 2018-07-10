@@ -1,6 +1,6 @@
 body{
   background: #83ccd5 ;
-  font-family: Axure Handwriting;
+  font-family: Arial Rounded MT Bold;
 }
 .container{
   height: 100%;
@@ -80,6 +80,7 @@ button{
   color: #fff;
   font-weight: bold;
   font-size: 15px;
+  font-family: Arial Rounded MT Bold;
 }
 a{
   text-align: right;
