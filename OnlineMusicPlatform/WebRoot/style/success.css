@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+body{
+  background: #83ccd5 ;
+  font-family: Arial Rounded MT Bold;
+  text-align:center;
+  margin-top: 4em;
+  font-size: 4em;
+  background-image: url(./tra.png), url(./littleblock.png), url(./wave.png);
+	background-size: 10%, 10%, 10%;
+	background-repeat: no-repeat, no-repeat, no-repeat;
+	background-position-y:200px, 600px, 1000px;
+	background-position-x:2px, 1500px, 160px;
+}

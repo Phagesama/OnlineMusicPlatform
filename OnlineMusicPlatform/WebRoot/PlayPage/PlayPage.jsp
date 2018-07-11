@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	<div  class = "backgroundpicture"></div>
      <div class = "topBar">
      <div class = "topWrapper">
-     	<a href="/OnlineMusicPlatform/main.jsp" class="titleBar">RuanKoMusic</a>
+     	<a href="/OnlineMusicPlatform/GetRankList" class="titleBar">RuanKoMusic</a>
         <a href="" class="signright">Sign up</a>
         <a class="signor">or</a>
         <a href="" class="signleft">${username}</a>

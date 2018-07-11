@@ -75,7 +75,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
     <div class="titleBar">
       <div class="center">
-        <a href="${pageContext.servletContext.contextPath}/" class="titleBar">RuanKoMusic</a>
+        <a href="${pageContext.servletContext.contextPath}/GetRankList" class="titleBar">RuanKoMusic</a>
         <a href="${pageContext.servletContext.contextPath}/signup.jsp" class="signright">Sign up</a>
         <a class="signor">or</a>
         <a href="${pageContext.servletContext.contextPath}/signin.jsp" class="signleft">${username}</a>
